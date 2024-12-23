@@ -4,26 +4,17 @@ public static class InsertionSort
 {
     public static int[] Sort(int[] arrayToSort)
     {
-        for(int i = 0; i < arrayToSort.Length; i++)
+        for (int i = 0; i < arrayToSort.Length - 1; i++)
         {
-            int currentValue = arrayToSort[i];
-            var toContinue = true;
-
-            for (int j = i - 1; j >= 0 && toContinue;)
+            for (int j = i + 1; j > 0; j--)
             {
-                if (arrayToSort[j] > currentValue)
+                // Swap if the element at j - 1 position is greater than the element at j position
+                if (arrayToSort[j - 1] > arrayToSort[j])
                 {
-                    arrayToSort[j + 1] = arrayToSort[j];
-                    j--;
-                    arrayToSort[j + 1] = currentValue;
-                }
-                else
-                {
-                    toContinue = false;
+                    (arrayToSort[j - 1], arrayToSort[j]) = (arrayToSort[j], arrayToSort[j - 1]);
                 }
             }
         }
-
-        return arrayToSort;
+        return arrayToSort; // Return the sorted array
     }
 }
