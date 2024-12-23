@@ -12,10 +12,8 @@ public static class BubbleSort
             {
                 if (arrayToSort[j] > arrayToSort[j + 1])
                 {
-                    int temp = arrayToSort[j];
-                    arrayToSort[j] = arrayToSort[j + 1];
-                    arrayToSort[j + 1] = temp;
-                    
+                    (arrayToSort[j], arrayToSort[j + 1]) = (arrayToSort[j + 1], arrayToSort[j]);
+
                     swapped = true;
                 }
             }
