@@ -1,43 +1,44 @@
+using System.Collections.Concurrent;
+
 namespace Arrays;
 
-public class QuickSort
+public static class QuickSort
 {
-    public static int[] Sort(int[] arrayToSort, int leftIndex, int rightIndex)
+    public static int[] Sort(int[] arrayToSort, int start, int end)
     {
-        var i = leftIndex;
-        var j = rightIndex;
-        var pivot = arrayToSort[leftIndex];
-        
-        Console.WriteLine("Array [{0}]", string.Join(", ", arrayToSort));
-        
-        while (i <= j)
+        if (start < end)
         {
-            while (arrayToSort[i] < pivot)
-            {
-                i++;
-            }
+            var partitionIndex = Partition(arrayToSort, start, end);
+            Sort(arrayToSort, start, partitionIndex - 1);
+            Sort(arrayToSort, partitionIndex + 1, end);
+        }
         
-            while (arrayToSort[j] > pivot)
-            {
-                j--;
-            }
+        return arrayToSort;
+    }
+    
+    private static void Swap(int[] arr, int i, int j) 
+    {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 
-            if (i <= j)
+    private static int Partition(int[] arrayToSort, int start, int end)
+    {
+        var pivot = arrayToSort[end];
+
+        var i = start - 1;
+
+        for (int j = start; j < end; j++)
+        {
+            if (arrayToSort[j] < pivot)
             {
-                int temp = arrayToSort[i];
-                arrayToSort[i] = arrayToSort[j];
-                arrayToSort[j] = temp;
                 i++;
-                j--;
+                Swap(arrayToSort, i, j);
             }
         }
-    
-        if (leftIndex < j)
-            Sort(arrayToSort, leftIndex, j);
-
-        if (i < rightIndex)
-            Sort(arrayToSort, i, rightIndex);
-
-        return arrayToSort;
+        
+        Swap(arrayToSort, i+1, end);
+        return i + 1;
     }
 }
