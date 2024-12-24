@@ -1,5 +1,3 @@
-using System.Collections.Concurrent;
-
 namespace Arrays;
 
 public static class QuickSort
