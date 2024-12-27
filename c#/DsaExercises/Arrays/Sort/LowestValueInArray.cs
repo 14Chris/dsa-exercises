@@ -1,4 +1,4 @@
-namespace Arrays;
+namespace Arrays.Sort;
 
 public class LowestValueInArray
 {

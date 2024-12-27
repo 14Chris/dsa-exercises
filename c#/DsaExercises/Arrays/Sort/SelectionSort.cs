@@ -1,4 +1,4 @@
-namespace Arrays;
+namespace Arrays.Sort;
 
 public static class SelectionSort
 {
